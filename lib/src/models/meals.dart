@@ -13,7 +13,42 @@ class Meals {
 
   Meals getCountryMeal(Map<dynamic, dynamic> json){
     
-    return Meals(uid: json["idMeal"], name: json["strMeal"], imageURL: json["strMealThumb"]);
+    return Meals(
+      uid: json["idMeal"] ?? "", 
+      name: json["strMeal"] ?? "", 
+      imageURL: json["strMealThumb"] ?? ""
+    );
   }
 
+}
+
+class MealDetails extends Meals{
+  String category;
+  String area;
+  String instructions;
+  String tags;
+  String ytLink;
+  List<String> ?ingredients = [];
+  List<String> ?measurements = [];
+
+  MealDetails getOneMeal(Map<dynamic, dynamic> json){
+    return MealDetails(
+      category: json["strCategory"] ?? "", 
+      area: json["strArea"] ?? "", 
+      instructions: json["strInstructions"] ?? "", 
+      tags: json["strTags"] ?? "", 
+      ytLink: json["strYoutube"] ?? "", 
+    );
+  }
+
+  MealDetails(    
+    {    
+    this.category = "",
+    this.area = "",
+    this.instructions = "",
+    this.tags = "",
+    this.ytLink = "",
+    this.ingredients,
+    this.measurements,
+  });
 }
